@@ -2,7 +2,11 @@ package br.saulProgramador.bytebank;
 
 public class Gerente extends Funcionario implements Autenticavel{
 	
-	private int senha;
+	private AutenticacaoUtil autenticador;
+	
+	public Gerente() {
+		autenticador = new AutenticacaoUtil();
+	}
 	
 	@Override
 	public double getBonificacao() {
@@ -12,16 +16,12 @@ public class Gerente extends Funcionario implements Autenticavel{
 
 	@Override
 	public void setSenha(int senha) {
-		this.senha = senha;
+		this.autenticador.setSenha(senha);
 	}
 
 	@Override
 	public boolean autetica(int senha)  {
-		if(this.senha == senha) {
-			return true;
-		} else {
-			return false;
-		}
+		return autenticador.autetica(senha);
 	}
 	
 }
